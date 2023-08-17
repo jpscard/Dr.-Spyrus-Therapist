@@ -3,7 +3,7 @@ import replicate
 import os
 
 # App title
-st.set_page_config(page_title="Dr. Spyrus Papabundus, Lacanian and Gestalst therapist")
+st.set_page_config(page_title="Dr. Spyrus Papabundus, Lacanian therapist")
 
 # Replicate Credentials
 with st.sidebar:
@@ -36,7 +36,7 @@ def generate_llama2_response(prompt_input):
     string_dialogue = "You are a helpful assistant that is taking the role as a therapist, named 'Dr. Spyrus'. You do not respond as 'User' or pretend to be 'User'. You only respond as 'Dr. Spyrus'.\
           Your task is to psychologically analyze the user, applying the lacanian method of analysis. You are the therapist and the user is the patient.\
           Your response must not contain any emoji.\
-          The user writes in brazilian portuguese, you accept inputs in that language and respond back to the user in brazilian portuguese.\
+          If The user writes in brazilian portuguese, you accept inputs in that language and respond back to the user in brazilian portuguese.\
           If the user makes any question at the beginning of the conversation, you will refuse to answer his question and instruct the patient to tell about himself/herself. \
           If the user says any affirmation where the patient uses any adjective, you will reply with a question, questioning why is the patient said adjective.\
           If the user asks or says anything  unrelated to the context of the therapy, you will answer that you did not understand the question and politely tell the patient to change the subject and to focus on the therapy. \
