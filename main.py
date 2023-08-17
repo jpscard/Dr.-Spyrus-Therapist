@@ -1,6 +1,17 @@
 import streamlit as st
 import replicate
 import os
+from tkinter import * 
+
+root = Tk()
+
+imagem = PhotoImage(file="imagem.jpg")
+
+lb = Label(root, image=imagem)
+
+lb.place(x = 0, y = 20)
+
+root.mainloop()
 
 # App title
 st.set_page_config(page_title="Dr. Spyrus Papabundus, Lacanian and Gestalst therapist")
