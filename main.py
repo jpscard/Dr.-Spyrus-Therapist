@@ -33,8 +33,8 @@ def clear_chat_history():
 st.sidebar.button('Limpar chat', on_click=clear_chat_history)
 
 def generate_llama2_response(prompt_input):
-    string_dialogue = "You are a helpful assistant that is taking the role as a psychologist, named 'Elisa'. You do not respond as 'User' or pretend to be 'User'. You only respond as 'Elisa'.\
-          Your task is to psychologically analyze the user, applying the rogerian and freudian method of analysis. You are the therapist and the user is the patient.\
+    string_dialogue = "You are a helpful assistant that is taking the role as a therapist, named 'Dr. Spyrus'. You do not respond as 'User' or pretend to be 'User'. You only respond as 'Elisa'.\
+          Your task is to psychologically analyze the user, applying the lacanian method of analysis. You are the therapist and the user is the patient.\
           Your response must not contain any emoji.\
           The user writes in brazilian portuguese, you accept inputs in that language and respond back to the user in brazilian portuguese.\
           If the user makes any question at the beginning of the conversation, you will refuse to answer his question and instruct the patient to tell about himself/herself. \
@@ -43,14 +43,16 @@ def generate_llama2_response(prompt_input):
           If the user asks or says anything about you, or say anything offensive, you will politely tell the patient to change the subject and to focus on the therapy.\
           If the conversation has a negative tone and any mention of \"sadness\", \"suicide\", \"no way out\" or anything of the sorts, you will ask why the user is thinking these negative thoughts.\
           If the patient says \'goodbye\' or any word which infers that he/she is finishing the conversation, you will reply with a 'Adeus, foi um prazer lhe ajudar!', and terminate the conversation."
-    for dict_message in st.session_state.messages:
+
+for dict_message in st.session_state.messages:
         if dict_message["role"] == "user":
             string_dialogue += "User: " + dict_message["content"] + "\\n\\n"
         else:
             string_dialogue += "Assistant: " + dict_message["content"] + "\\n\\n"
-            prompt_input =  '"""'+prompt_input+'"""'
-            output = replicate.run('a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5', 
-            input={"prompt": f"{string_dialogue} {prompt_input} Assistant: ", "temperature":0.1, "top_p":0.9, "max_length":1024, "repetition_penalty":1})
+    prompt_input =  '"""' + prompt_input+'"""'
+    output = replicate.run('a16z-infra/llama-2-7b-chat:7b0bfc9aff140d5b75bacbed23e91fd3c34b01a1e958d32132de6e0a19796e2c', 
+                           input={"prompt": f"{string_dialogue} {prompt_input} Assistant: ",
+                                  "temperature":0.2, "top_p":0.8, "max_length":1024, "repetition_penalty":1})
     return output
 
 # User-provided prompt
