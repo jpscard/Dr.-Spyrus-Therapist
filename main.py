@@ -3,20 +3,20 @@ import replicate
 import os
 
 # App title
-st.set_page_config(page_title="Elisa com S, a terapeuta Rogeriana não tão básica")
+st.set_page_config(page_title="Dr. Spyrus Papabundus, Lacanian and Gestalst therapist")
 
 # Replicate Credentials
 with st.sidebar:
     st.title('Dr. Spyrus Therapist')
     if 'REPLICATE_API_TOKEN' in st.secrets:
-        st.success('chave API já providenciada!', icon='✅')
+        st.success('chave API autorizada!', icon='✅')
         replicate_api = st.secrets['REPLICATE_API_TOKEN']
     else:
-        replicate_api = st.text_input('Por favor digite sua chave API:', type='password')
+        replicate_api = st.text_input('Por favor insira sua chave API:', type='password')
         if not (replicate_api.startswith('r8_') and len(replicate_api)==40):
-            st.warning('Por favor digite suas credenciais!', icon='⚠️')
+            st.warning('Por favor, insira suas credenciais!', icon='⚠️')
         else:
-            st.success('Pronto! Já pode inserir a sua pergunta!', icon='👉')
+            st.success('Tudo Certo! Faça a sua pergunta!', icon='👉')
 os.environ['REPLICATE_API_TOKEN'] = replicate_api
 
 # Store LLM generated responses
