@@ -1,11 +1,6 @@
 import streamlit as st
 import replicate
 import os
-from tkinter import * 
-
-root = Tk()
-
-imagem = PhotoImage(file="imagem.jpg")
 
 # App title
 st.set_page_config(page_title="Dr. Spyrus Papabundus, Lacanian and Gestalst therapist")
