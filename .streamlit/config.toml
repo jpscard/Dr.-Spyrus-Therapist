@@ -4,4 +4,3 @@ backgroundColor = "#FFFFFF"
 secondaryBackgroundColor = "#F0F0F0"
 textColor = "#000000"
 font="sans serif"
-sidebar = { "backgroundColor": "#FFFFFF", "contrast": 1.2}
