@@ -46,12 +46,11 @@ Se o paciente disser 'adeus' ou qualquer palavra que indique que ele/ela está e
 
     for dict_message in st.session_state.messages:
         if dict_message["role"] == "user":
-            string_dialogue += "User: " + dict_message["content"] + "\\n\\n"
+           string_dialogue += "User: " + dict_message["content"] + "\\n\\n"
         else:
-            string_dialogue += "Assistant: " + dict_message["content"] + "\\n\\n"
+        string_dialogue += "Assistant: " + dict_message["content"] + "\\n\\n"
         prompt_input =  '"""'+prompt_input+'"""'
-        output = replicate.run('a16z-infra/llama-2-7b-chat:7b0bfc9aff140d5b75bacbed23e91fd3c34b01a1e958d32132de6e0a19796e2c', 
-        input={"prompt": f"{string_dialogue} {prompt_input} Assistant: ", "temperature":0.2, "top_p":0.8, "max_length":1024, "repetition_penalty":1})
+        output = replicate.run('a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5', input={"prompt": f"{string_dialogue} {prompt_input} Assistant: ", "temperature":0.2, "top_p":0.8, "max_length":1024, "repetition_penalty":1})
     return output
 
 # User-provided prompt
@@ -64,7 +63,7 @@ if prompt := st.chat_input(disabled=not replicate_api):
 # Generate a new response if last message is not from assistant
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
-        with st.spinner("Pensando..."):
+        with st.spinner("thinking..."):
             response = generate_llama2_response(prompt)
             placeholder = st.empty()
             full_response = ''
